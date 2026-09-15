@@ -175,8 +175,8 @@ resizeNet();drawNet();
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const SUPABASE_URL = "https://zidfjkdeyalmwdiapwnq.supabase.co/auth/v1/callback";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppZGZqa2RleWFsbXdkaWFwd25xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0ODgzMjIsImV4cCI6MjEwNTA2NDMyMn0.FO174YEAajk96ZehPQIrM3HaFawzEIEo88IIWpMNmpc";
+const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
+const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const login = document.getElementById("discordLogin");
@@ -250,7 +250,31 @@ async function loadPortal() {
 function esc(v="") {
   const d=document.createElement("div"); d.textContent=String(v); return d.innerHTML;
 }
-loadPortal();
+async function startPortal() {
+  const { data: { session } } = await supabase.auth.getSession();
+
+  if (session) {
+    // Returning customer: skip the cinematic intro and go directly to the portal.
+    const introScreen = document.getElementById("intro");
+    if (introScreen) introScreen.remove();
+    document.body.classList.remove("intro-open");
+
+    await loadPortal();
+
+    if (location.hash !== "#portal") {
+      history.replaceState(null, "", location.pathname + location.search + "#portal");
+    }
+    setTimeout(() => document.getElementById("portal")?.scrollIntoView({behavior:"smooth"}), 50);
+  }
+}
+
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === "SIGNED_IN" && session) {
+    setTimeout(startPortal, 0);
+  }
+});
+
+startPortal();
 </script>
 
 </body></html>
