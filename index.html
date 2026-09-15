@@ -17,7 +17,17 @@ h1{font-size:clamp(55px,10vw,116px);line-height:.9;letter-spacing:-.065em;margin
 section{padding:105px 0}.eye{color:#a58cff;text-transform:uppercase;font-size:12px;font-weight:900;letter-spacing:.18em}.title{font-size:clamp(36px,5vw,58px);letter-spacing:-.045em;margin:10px 0 14px}.copy{color:var(--muted);max-width:650px;line-height:1.7}.cards,.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}.card,.price{padding:26px;border:1px solid #ffffff17;border-radius:20px;background:linear-gradient(145deg,#ffffff0e,#ffffff05);transition:.3s}.card:hover{transform:translateY(-7px);border-color:#a78bfa55}.ico{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:#8b5cf61d;font-size:21px}.card h3{margin:17px 0 8px}.card p,.price li{color:var(--muted);line-height:1.65;font-size:14px}.price.featured{border-color:#8b5cf680;box-shadow:0 0 60px #8b5cf620;transform:scale(1.03)}.money{font-size:44px;font-weight:950;letter-spacing:-.05em}.money small{font-size:14px;color:var(--muted)}.price ul{list-style:none;padding:0;line-height:2}.price li:before{content:"✓";color:var(--g);font-weight:900;margin-right:9px}
 .cta{text-align:center;padding:70px 25px;border:1px solid #ffffff17;border-radius:30px;background:radial-gradient(circle at 50% 0,#8b5cf62b,transparent 52%),#ffffff05}.cta h2{font-size:clamp(38px,6vw,66px);margin:8px 0 12px;letter-spacing:-.05em}.cta p{color:var(--muted);margin-bottom:25px}
 .reveal{opacity:0;transform:translateY(28px);transition:.7s}.show{opacity:1;transform:none}footer{max-width:1160px;margin:auto;padding:35px 24px 55px;border-top:1px solid #ffffff15;color:#747b92;font-size:13px;display:flex;justify-content:space-between}
-@media(max-width:800px){nav .links{display:none}.cards,.prices{grid-template-columns:1fr}.price.featured,.mock{transform:none}.demo{grid-template-columns:1fr}.side{display:none}.stats{grid-template-columns:1fr}}
+
+.portal-wrap{margin-top:38px;display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.portal-card{padding:28px;border:1px solid #ffffff17;border-radius:22px;background:linear-gradient(145deg,#ffffff0e,#ffffff05)}
+.portal-card h3{margin:8px 0 10px;font-size:25px}.portal-card p{color:var(--muted);line-height:1.65}
+.portal-preview{display:grid;gap:12px}.project-row{padding:16px;border:1px solid #ffffff13;border-radius:14px;background:#080b17}
+.project-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.status{font-size:11px;font-weight:900;color:#86efac}
+.progress{height:8px;background:#ffffff0c;border-radius:999px;overflow:hidden;margin-top:13px}.progress i{display:block;height:100%;width:68%;background:linear-gradient(90deg,var(--c),var(--p));border-radius:inherit}
+.portal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.mini{padding:14px;border:1px solid #ffffff12;border-radius:13px;background:#ffffff05}.mini b{display:block;margin-bottom:5px}.mini span{color:var(--muted);font-size:12px}
+.login-box{margin-top:18px;padding:18px;border:1px solid #5865f24d;border-radius:16px;background:#5865f210}.discord-btn{background:#5865F2}
+
+@media(max-width:800px){nav .links{display:none}.cards,.prices,.portal-wrap{grid-template-columns:1fr}.price.featured,.mock{transform:none}.demo{grid-template-columns:1fr}.side{display:none}.stats{grid-template-columns:1fr}}
 
 /* ATLAST cinematic entrance */
 #intro{
@@ -60,7 +70,7 @@ body.intro-open{overflow:hidden}
 </div>
 
 <div class="grid"></div><div class="orb a"></div><div class="orb b"></div>
-<nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#why">Why ATLAST</a></div><a class="btn" href="https://discord.gg/p5cD6JS8B">Get a Bot ↗</a></nav>
+<nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#why">Why ATLAST</a><a href="#portal">Customer Portal</a></div><a class="btn" href="https://discord.gg/p5cD6JS8B">Get a Bot ↗</a></nav>
 <main>
 <section class="hero"><div><div class="badge"><span class="dot"></span> Now accepting custom projects</div><h1>Discord bots.<br><span class="grad">Built different.</span></h1><p>Custom Discord systems designed around your community — from verification and tickets to economies, dashboards and completely original ideas.</p><div class="actions"><a class="btn" href="https://discord.gg/p5cD6JS8B">Start a Project →</a><a class="btn secondary" href="#services">Explore Features ↓</a></div>
 <div class="mock"><div class="window"><div class="bar"><i></i><i></i><i></i></div><div class="demo"><div class="side"><b>ATLAST PRO</b><span class="on">◈ Dashboard</span><span>◉ Orders</span><span>◇ Customers</span><span>◎ Analytics</span><span>⚙ Settings</span></div><div class="content"><small>BUSINESS OVERVIEW</small><h3>Everything. One system.</h3><div class="stats"><div class="stat"><strong>24/7</strong><span>AUTOMATION</span></div><div class="stat"><strong>Custom</strong><span>WORKFLOWS</span></div><div class="stat"><strong>Fast</strong><span>SUPPORT</span></div></div></div></div></div></div></div></section>
@@ -76,6 +86,42 @@ body.intro-open{overflow:hidden}
 <div class="price"><h3>Starter</h3><div class="money">$5<small>+</small></div><ul><li>Small custom bot</li><li>1–3 core features</li><li>Basic setup help</li></ul><a class="btn secondary" href="https://discord.gg/p5cD6JS8B">Ask about Starter</a></div>
 <div class="price featured"><div class="eye">Most flexible</div><h3>Custom</h3><div class="money">$10<small>+</small></div><ul><li>Multiple custom systems</li><li>Interactive panels</li><li>Database features</li><li>Setup support</li></ul><a class="btn" href="https://discord.gg/p5cD6JS8B">Get a Quote →</a></div>
 <div class="price"><h3>Pro</h3><div class="money">$15<small>+</small></div><ul><li>Advanced custom bot</li><li>Large feature set</li><li>Community tools</li><li>Custom workflows</li></ul><a class="btn secondary" href="https://discord.gg/p5cD6JS8B">Plan a Pro Bot</a></div></div></section>
+
+<section id="portal" class="reveal">
+  <div class="eye">ATLAST Portal</div>
+  <h2 class="title">Your bot. One dashboard.</h2>
+  <p class="copy">ATLAST customers get a private project space for tracking their bot from order to delivery.</p>
+  <div class="portal-wrap">
+    <div class="portal-card">
+      <div class="eye">Customer dashboard</div>
+      <h3>Everything about your project.</h3>
+      <p>Track development without digging through Discord messages. Your dashboard keeps the important parts together.</p>
+      <div class="portal-grid">
+        <div class="mini"><b>Bot Status</b><span>See whether your project is planning, building, testing or delivered.</span></div>
+        <div class="mini"><b>Build Progress</b><span>Follow development progress and completed milestones.</span></div>
+        <div class="mini"><b>Features</b><span>See the systems included in your custom bot.</span></div>
+        <div class="mini"><b>Updates</b><span>View project notes, changes and delivery updates.</span></div>
+        <div class="mini"><b>Support</b><span>Keep requests and project questions organized.</span></div>
+        <div class="mini"><b>Delivery</b><span>Access final delivery information when your project is ready.</span></div>
+      </div>
+      <div class="login-box">
+        <b>Already an ATLAST customer?</b>
+        <p>Customer accounts will use Discord sign-in so each buyer only sees projects assigned to their Discord account.</p>
+        <a class="btn discord-btn" href="#" onclick="alert('Discord login needs the secure portal backend connected first.');return false;">Login with Discord →</a>
+      </div>
+    </div>
+    <div class="portal-card portal-preview">
+      <div class="project-top"><div><small style="color:#7e869f">MY PROJECT</small><h3 style="margin:5px 0">Custom Discord Bot</h3></div><span class="status">● BUILDING</span></div>
+      <div class="project-row"><div class="project-top"><b>Development Progress</b><b>68%</b></div><div class="progress"><i></i></div></div>
+      <div class="project-row"><small style="color:#7e869f">CURRENT STAGE</small><h3 style="font-size:18px;margin:7px 0 0">Core systems & integrations</h3></div>
+      <div class="project-row"><small style="color:#7e869f">RECENT UPDATE</small><p style="margin-bottom:0">Project dashboard connected. Core bot systems are currently being built.</p></div>
+      <div class="project-row"><div class="project-top"><span>Verification</span><b>✓</b></div></div>
+      <div class="project-row"><div class="project-top"><span>Ticket System</span><b>✓</b></div></div>
+      <div class="project-row"><div class="project-top"><span>Custom Features</span><b>In progress</b></div></div>
+    </div>
+  </div>
+</section>
+
 <section class="reveal"><div class="cta"><div class="eye">Let's build it</div><h2>Have a bot idea?</h2><p>Tell me what your server needs. Even if you don't know exactly how to build it yet.</p><a class="btn" href="https://discord.gg/p5cD6JS8B">Join ATLAST & Start an Order →</a></div></section>
 </main><footer><div><b>ATLAST</b> • Custom Discord Bots</div><div>© 2026 ATLAST</div></footer>
 <script>
