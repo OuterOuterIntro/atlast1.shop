@@ -107,15 +107,16 @@ body.intro-open{overflow:hidden}
       <div class="login-box">
         <b>Already an ATLAST customer?</b>
         <p>Sign in with Discord to securely load only the projects assigned to your account.</p>
-        <a class="btn discord-btn" href="#" onclick="alert('Discord login needs the secure portal backend connected first.');return false;">Login with Discord →</a>
+        <a class="btn discord-btn" href="#" id="discordLogin">Login with Discord →</a>
       </div>
     </div>
     <div class="portal-card portal-preview">
       <div class="eye">Private dashboard</div>
       <h3>Only your real project data.</h3>
       <p>This area stays empty until a customer signs in. After login, ATLAST will load only the projects assigned to that customer's Discord account.</p>
+      <div id="portalUser" style="display:none;margin-bottom:12px"><span id="portalName"></span> <a href="#" id="logoutBtn" style="color:#a78bfa;margin-left:10px">Log out</a></div>
       <div class="project-row">
-        <small style="color:#7e869f">SIGNED OUT</small>
+        <small id="projectState" style="color:#7e869f">SIGNED OUT</small>
         <h3 style="font-size:18px;margin:7px 0">No project loaded</h3>
         <p style="margin-bottom:0">Sign in with Discord to view your bot status, progress, features, updates and delivery information.</p>
       </div>
@@ -170,4 +171,86 @@ document.getElementById("enterSite").addEventListener("click",()=>{
 });
 resizeNet();drawNet();
 
-</script></body></html>
+</script>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
+const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const login = document.getElementById("discordLogin");
+const logout = document.getElementById("logoutBtn");
+const portalUser = document.getElementById("portalUser");
+const portalName = document.getElementById("portalName");
+const projectState = document.getElementById("projectState");
+
+login?.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "discord",
+    options: { redirectTo: `${location.origin}${location.pathname}#portal` }
+  });
+  if (error) console.error(error);
+});
+
+logout?.addEventListener("click", async (e) => {
+  e.preventDefault();
+  await supabase.auth.signOut();
+  location.reload();
+});
+
+async function loadPortal() {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  login.style.display = "none";
+  portalUser.style.display = "block";
+  portalName.textContent = `Signed in as ${user.user_metadata?.full_name || user.user_metadata?.name || "Discord customer"}`;
+  projectState.textContent = "LOADING PROJECT";
+
+  const { data: projects, error } = await supabase
+    .from("projects")
+    .select("id,bot_name,status,progress,current_stage,recent_update,features,delivery_note")
+    .eq("customer_id", user.id)
+    .order("created_at", { ascending: false });
+
+  const preview = document.querySelector(".portal-preview");
+  if (error) {
+    projectState.textContent = "COULD NOT LOAD PROJECT";
+    console.error(error);
+    return;
+  }
+  if (!projects?.length) {
+    projectState.textContent = "NO PROJECT ASSIGNED";
+    return;
+  }
+
+  const p = projects[0];
+  const features = Array.isArray(p.features) ? p.features : [];
+  preview.innerHTML = `
+    <div class="project-top">
+      <div><small style="color:#7e869f">MY PROJECT</small><h3 style="margin:5px 0">${esc(p.bot_name)}</h3></div>
+      <span class="status">● ${esc((p.status || "ORDER RECEIVED").toUpperCase())}</span>
+    </div>
+    <div class="project-row">
+      <div class="project-top"><b>Development Progress</b><b>${Number(p.progress || 0)}%</b></div>
+      <div class="progress"><i style="width:${Math.max(0,Math.min(100,Number(p.progress||0)))}%"></i></div>
+    </div>
+    <div class="project-row"><small style="color:#7e869f">CURRENT STAGE</small><h3 style="font-size:18px;margin:7px 0">${esc(p.current_stage || "Not started")}</h3></div>
+    <div class="project-row"><small style="color:#7e869f">LATEST UPDATE</small><p>${esc(p.recent_update || "No updates yet.")}</p></div>
+    ${features.map(f => `<div class="project-row"><div class="project-top"><span>${esc(f.name || f)}</span><b>${esc(f.status || "")}</b></div></div>`).join("")}
+    <div class="project-row"><small style="color:#7e869f">DELIVERY</small><p>${esc(p.delivery_note || "Not ready for delivery yet.")}</p></div>
+    <a href="#" id="logoutBtn2" style="color:#a78bfa">Log out</a>
+  `;
+  document.getElementById("logoutBtn2")?.addEventListener("click", async e => {
+    e.preventDefault(); await supabase.auth.signOut(); location.reload();
+  });
+}
+function esc(v="") {
+  const d=document.createElement("div"); d.textContent=String(v); return d.innerHTML;
+}
+loadPortal();
+</script>
+
+</body></html>
