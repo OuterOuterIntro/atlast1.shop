@@ -18,7 +18,47 @@ section{padding:105px 0}.eye{color:#a58cff;text-transform:uppercase;font-size:12
 .cta{text-align:center;padding:70px 25px;border:1px solid #ffffff17;border-radius:30px;background:radial-gradient(circle at 50% 0,#8b5cf62b,transparent 52%),#ffffff05}.cta h2{font-size:clamp(38px,6vw,66px);margin:8px 0 12px;letter-spacing:-.05em}.cta p{color:var(--muted);margin-bottom:25px}
 .reveal{opacity:0;transform:translateY(28px);transition:.7s}.show{opacity:1;transform:none}footer{max-width:1160px;margin:auto;padding:35px 24px 55px;border-top:1px solid #ffffff15;color:#747b92;font-size:13px;display:flex;justify-content:space-between}
 @media(max-width:800px){nav .links{display:none}.cards,.prices{grid-template-columns:1fr}.price.featured,.mock{transform:none}.demo{grid-template-columns:1fr}.side{display:none}.stats{grid-template-columns:1fr}}
-</style></head><body>
+
+/* ATLAST cinematic entrance */
+#intro{
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(circle at 50% 45%,rgba(110,75,255,.15),transparent 32%),#04060d;
+  transition:opacity .9s ease,visibility .9s ease;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+#network{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.intro-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,transparent 20%,rgba(2,3,9,.18) 55%,rgba(2,3,9,.9) 100%)}
+.intro-center{position:relative;z-index:2;text-align:center;padding:24px}
+.intro-mini{font-size:11px;font-weight:900;letter-spacing:.42em;color:#8d96b8;text-transform:uppercase;margin-bottom:18px}
+.intro-title{font-size:clamp(70px,14vw,170px);line-height:.82;margin:0;letter-spacing:-.075em;font-weight:1000;
+ background:linear-gradient(100deg,#fff 5%,#8be7ff 32%,#a88cff 61%,#f4ce7c 95%);
+ -webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 32px rgba(139,92,246,.22));
+ animation:introRise 1.1s cubic-bezier(.2,.8,.2,1) both}
+.intro-sub{color:#8f96ad;letter-spacing:.18em;text-transform:uppercase;font-size:11px;margin:24px 0 30px;animation:introRise 1.1s .12s both}
+.enter-btn{position:relative;isolation:isolate;border:1px solid rgba(255,255,255,.18);color:white;background:rgba(255,255,255,.055);
+ backdrop-filter:blur(15px);padding:15px 31px;border-radius:999px;font-weight:900;letter-spacing:.18em;font-size:12px;cursor:pointer;
+ overflow:hidden;transition:.3s;animation:introRise 1.1s .22s both}
+.enter-btn:before{content:"";position:absolute;inset:-2px;z-index:-1;background:linear-gradient(90deg,transparent,rgba(34,211,238,.25),rgba(139,92,246,.35),transparent);transform:translateX(-100%);transition:.6s}
+.enter-btn:hover{transform:translateY(-3px) scale(1.03);border-color:rgba(167,139,250,.55);box-shadow:0 0 45px rgba(139,92,246,.2)}
+.enter-btn:hover:before{transform:translateX(100%)}
+.intro-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;color:#596079;font-size:10px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+@keyframes introRise{from{opacity:0;transform:translateY(28px);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+body.intro-open{overflow:hidden}
+
+</style></head><body class="intro-open">
+
+<div id="intro">
+  <canvas id="network"></canvas>
+  <div class="intro-vignette"></div>
+  <div class="intro-center">
+    <div class="intro-mini">Custom systems • Built different</div>
+    <h1 class="intro-title">ATLAST</h1>
+    <div class="intro-sub">Custom Discord Bots</div>
+    <button class="enter-btn" id="enterSite">ENTER&nbsp; ↗</button>
+  </div>
+  <div class="intro-hint">Move your mouse • The network reacts</div>
+</div>
+
 <div class="grid"></div><div class="orb a"></div><div class="orb b"></div>
 <nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#why">Why ATLAST</a></div><a class="btn" href="https://discord.gg/p5cD6JS8B">Get a Bot ↗</a></nav>
 <main>
@@ -41,4 +81,42 @@ section{padding:105px 0}.eye{color:#a58cff;text-transform:uppercase;font-size:12
 <script>
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.12});document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
 document.querySelectorAll(".card").forEach(c=>{c.addEventListener("pointermove",e=>{let r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateY(${x*4}deg) rotateX(${-y*4}deg) translateY(-5px)`});c.addEventListener("pointerleave",()=>c.style.transform="")});
+
+const intro=document.getElementById("intro"),canvas=document.getElementById("network"),ctx=canvas.getContext("2d");
+let W=0,H=0,dpr=Math.min(devicePixelRatio||1,2),mouse={x:-9999,y:-9999},pts=[];
+function resizeNet(){
+ W=innerWidth;H=innerHeight;canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.width=W+"px";canvas.style.height=H+"px";
+ ctx.setTransform(dpr,0,0,dpr,0,0);
+ let count=Math.min(110,Math.max(45,Math.floor(W*H/15000)));
+ pts=Array.from({length:count},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.24,vy:(Math.random()-.5)*.24}));
+}
+function drawNet(){
+ ctx.clearRect(0,0,W,H);
+ for(const p of pts){
+   p.x+=p.vx;p.y+=p.vy;
+   if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+   let md=Math.hypot(p.x-mouse.x,p.y-mouse.y);
+   if(md<170){let f=(170-md)/170*.55;p.x+=(p.x-mouse.x)/(md||1)*f;p.y+=(p.y-mouse.y)/(md||1)*f}
+ }
+ for(let i=0;i<pts.length;i++){
+   const a=pts[i];
+   for(let j=i+1;j<pts.length;j++){
+     const b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+     if(d<125){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(125,150,255,${(1-d/125)*.16})`;ctx.lineWidth=.7;ctx.stroke()}
+   }
+   let md=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+   if(md<190){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle=`rgba(116,220,255,${(1-md/190)*.48})`;ctx.lineWidth=1;ctx.stroke()}
+   ctx.beginPath();ctx.arc(a.x,a.y,1.15,0,Math.PI*2);ctx.fillStyle="rgba(190,205,255,.52)";ctx.fill();
+ }
+ requestAnimationFrame(drawNet);
+}
+addEventListener("resize",resizeNet);
+intro.addEventListener("pointermove",e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+intro.addEventListener("pointerleave",()=>mouse={x:-9999,y:-9999});
+document.getElementById("enterSite").addEventListener("click",()=>{
+ intro.classList.add("hide");document.body.classList.remove("intro-open");
+ setTimeout(()=>intro.remove(),950);
+});
+resizeNet();drawNet();
+
 </script></body></html>
