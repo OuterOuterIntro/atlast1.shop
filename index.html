@@ -55,20 +55,6 @@ section{padding:105px 0}.eye{color:#a58cff;text-transform:uppercase;font-size:12
 @keyframes introRise{from{opacity:0;transform:translateY(28px);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
 body.intro-open{overflow:hidden}
 
-
-/* ATLAST instant order builder */
-.order-builder{margin-top:38px;display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start}
-.order-box,.quote-box{padding:28px;border:1px solid #ffffff17;border-radius:22px;background:linear-gradient(145deg,#ffffff0e,#ffffff05)}
-.order-box h3,.quote-box h3{margin:7px 0 8px;font-size:24px}.order-step{padding:18px 0;border-bottom:1px solid #ffffff10}.order-step:last-child{border-bottom:0}
-.order-step label.head{display:block;font-weight:900;margin-bottom:11px}.order-input,.order-textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #ffffff18;background:#080b17;color:#fff;outline:none;font:inherit}
-.order-textarea{min-height:105px;resize:vertical}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
-.feature-option{display:flex;gap:10px;align-items:flex-start;padding:13px;border:1px solid #ffffff13;border-radius:13px;background:#080b17;cursor:pointer;transition:.2s}
-.feature-option:hover{border-color:#8b5cf655;transform:translateY(-2px)}.feature-option input{margin-top:3px;accent-color:#8b5cf6}.feature-option b{display:block;font-size:14px}.feature-option small{color:var(--muted)}
-.quote-box{position:sticky;top:100px}.quote-price{font-size:54px;font-weight:1000;letter-spacing:-.06em;margin:12px 0}.quote-price small{font-size:13px;color:var(--muted);letter-spacing:0}
-.quote-lines{margin:18px 0;display:grid;gap:9px}.quote-line{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:13px}.quote-line strong{color:#fff}
-.order-note{font-size:12px;color:#7f879e;line-height:1.55}.success-box{display:none;margin-top:14px;padding:14px;border:1px solid #34d39955;background:#34d39912;border-radius:13px;color:#a7f3d0}
-@media(max-width:800px){.order-builder{grid-template-columns:1fr}.quote-box{position:static}.feature-grid{grid-template-columns:1fr}}
-
 </style></head><body class="intro-open">
 
 <div id="intro">
@@ -84,9 +70,9 @@ body.intro-open{overflow:hidden}
 </div>
 
 <div class="grid"></div><div class="orb a"></div><div class="orb b"></div>
-<nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#order">Order</a><a href="#why">Why ATLAST</a><a href="#portal">Customer Portal</a></div><a class="btn" href="#order">Build My Bot ↗</a></nav>
+<nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#why">Why ATLAST</a><a href="#portal">Customer Portal</a></div><a class="btn" href="/build/">Build My Bot ↗</a></nav>
 <main>
-<section class="hero"><div><div class="badge"><span class="dot"></span> Now accepting custom projects</div><h1>Discord bots.<br><span class="grad">Built different.</span></h1><p>Custom Discord systems designed around your community — from verification and tickets to economies, dashboards and completely original ideas.</p><div class="actions"><a class="btn" href="#order">Build My Bot →</a><a class="btn secondary" href="#services">Explore Features ↓</a></div>
+<section class="hero"><div><div class="badge"><span class="dot"></span> Now accepting custom projects</div><h1>Discord bots.<br><span class="grad">Built different.</span></h1><p>Custom Discord systems designed around your community — from verification and tickets to economies, dashboards and completely original ideas.</p><div class="actions"><a class="btn" href="/build/">Build My Bot →</a><a class="btn secondary" href="#services">Explore Features ↓</a></div>
 <div class="mock"><div class="window"><div class="bar"><i></i><i></i><i></i></div><div class="demo"><div class="side"><b>ATLAST PRO</b><span class="on">◈ Dashboard</span><span>◉ Orders</span><span>◇ Customers</span><span>◎ Analytics</span><span>⚙ Settings</span></div><div class="content"><small>BUSINESS OVERVIEW</small><h3>Everything. One system.</h3><div class="stats"><div class="stat"><strong>24/7</strong><span>AUTOMATION</span></div><div class="stat"><strong>Custom</strong><span>WORKFLOWS</span></div><div class="stat"><strong>Fast</strong><span>SUPPORT</span></div></div></div></div></div></div></div></section>
 <section id="services" class="reveal"><div class="eye">What I build</div><h2 class="title">More than commands.</h2><p class="copy">Your bot can be built around how your server actually works instead of forcing your community into a generic template.</p><div class="cards">
 <div class="card"><div class="ico">✓</div><h3>Verification</h3><p>Custom onboarding, role assignment and verification flows.</p></div>
@@ -96,75 +82,10 @@ body.intro-open{overflow:hidden}
 <div class="card"><div class="ico">📈</div><h3>Analytics</h3><p>Invite tracking, activity statistics, dashboards and useful data.</p></div>
 <div class="card"><div class="ico">⚡</div><h3>Your Idea</h3><p>Have something unusual in mind? Pitch the idea and let's build it.</p></div></div></section>
 <section id="why" class="reveal"><div class="eye">Why ATLAST</div><h2 class="title">Made for your server.</h2><div class="cards"><div class="card"><div class="ico">⌘</div><h3>Actually Custom</h3><p>No one-size-fits-all setup. Features can be designed around your community.</p></div><div class="card"><div class="ico">✦</div><h3>Polished UX</h3><p>Clean embeds, buttons, modals and interactions that feel like a real product.</p></div><div class="card"><div class="ico">↻</div><h3>Built to Grow</h3><p>Start simple and add systems later as your community grows.</p></div></div></section>
-<section id="pricing" class="reveal"><div class="eye">Pricing</div><h2 class="title">Start small. Build up.</h2><p class="copy">Every project is different, so these are starting points. Build your bot below and get an instant estimated quote.</p><div class="prices">
-<div class="price"><h3>Starter</h3><div class="money">$5<small>+</small></div><ul><li>Small custom bot</li><li>1–3 core features</li><li>Basic setup help</li></ul><a class="btn secondary" href="#order">Build Starter</a></div>
-<div class="price featured"><div class="eye">Most flexible</div><h3>Custom</h3><div class="money">$10<small>+</small></div><ul><li>Multiple custom systems</li><li>Interactive panels</li><li>Database features</li><li>Setup support</li></ul><a class="btn" href="#order">Build Custom →</a></div>
-<div class="price"><h3>Pro</h3><div class="money">$15<small>+</small></div><ul><li>Advanced custom bot</li><li>Large feature set</li><li>Community tools</li><li>Custom workflows</li></ul><a class="btn secondary" href="#order">Build Pro Bot</a></div></div></section>
-
-
-<section id="order" class="reveal">
-  <div class="eye">Instant order builder</div>
-  <h2 class="title">Build your bot. See the price.</h2>
-  <p class="copy">Choose what your server needs and ATLAST calculates an estimated project price instantly. No Discord required just to get started.</p>
-  <div class="order-builder">
-    <div class="order-box">
-      <h3>Configure your bot</h3>
-      <p class="copy" style="font-size:14px">Start with the basics, then add only the systems you actually want.</p>
-
-      <div class="order-step">
-        <label class="head">Bot name</label>
-        <input class="order-input" id="orderBotName" maxlength="50" placeholder="Example: JD Bot">
-      </div>
-
-      <div class="order-step">
-        <label class="head">Core build</label>
-        <div class="feature-grid">
-          <label class="feature-option"><input type="radio" name="package" value="5" data-name="Starter base" checked><span><b>Starter — $5</b><small>Small bot foundation + setup</small></span></label>
-          <label class="feature-option"><input type="radio" name="package" value="10" data-name="Custom base"><span><b>Custom — $10</b><small>Multi-system custom foundation</small></span></label>
-          <label class="feature-option"><input type="radio" name="package" value="15" data-name="Pro base"><span><b>Pro — $15</b><small>Larger advanced foundation</small></span></label>
-        </div>
-      </div>
-
-      <div class="order-step">
-        <label class="head">Add features</label>
-        <div class="feature-grid" id="featureChoices">
-          <label class="feature-option"><input type="checkbox" value="3" data-name="Moderation"><span><b>🛡 Moderation +$3</b><small>Ban, kick, timeout, purge and staff tools</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="3" data-name="Tickets"><span><b>🎫 Tickets +$3</b><small>Private support/order tickets</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="4" data-name="Leveling"><span><b>🏆 Leveling +$4</b><small>XP, ranks and leaderboard</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="2" data-name="Welcome & autorole"><span><b>👋 Welcome +$2</b><small>Welcome, leave and autorole</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="4" data-name="YouTube notifications"><span><b>📺 YouTube +$4</b><small>Automatic upload notifications</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="5" data-name="Economy"><span><b>💰 Economy +$5</b><small>Balances, rewards and shop systems</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="3" data-name="Logging"><span><b>📋 Logging +$3</b><small>Useful server and moderation logs</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="3" data-name="Giveaways"><span><b>🎁 Giveaways +$3</b><small>Interactive giveaway system</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="3" data-name="Verification"><span><b>✓ Verification +$3</b><small>Custom member onboarding</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="4" data-name="Invite tracking"><span><b>📈 Invite tracking +$4</b><small>Referrals and invite statistics</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="3" data-name="Reaction/button roles"><span><b>🎨 Role panels +$3</b><small>Button/select-menu role assignment</small></span></label>
-          <label class="feature-option"><input type="checkbox" value="5" data-name="Custom workflow"><span><b>⚡ Custom system +$5</b><small>A custom idea not covered above</small></span></label>
-        </div>
-      </div>
-
-      <div class="order-step">
-        <label class="head">Tell me what you want</label>
-        <textarea class="order-textarea" id="orderDetails" maxlength="1500" placeholder="Describe how you want the bot to work, commands, colors, special ideas, etc."></textarea>
-      </div>
-
-      <div class="order-step">
-        <label class="head">How should ATLAST contact you?</label>
-        <input class="order-input" id="orderContact" maxlength="100" placeholder="Discord username or email">
-      </div>
-    </div>
-
-    <aside class="quote-box">
-      <div class="eye">Live estimate</div>
-      <h3>Your ATLAST build</h3>
-      <div class="quote-price">$<span id="quoteTotal">5</span><small> estimated</small></div>
-      <div class="quote-lines" id="quoteLines"></div>
-      <p class="order-note">This is an automatic estimate based on the options selected. Extremely unusual or much larger custom requests may need a manual final quote before work starts.</p>
-      <button class="btn" id="submitOrder" style="width:100%;justify-content:center;border:0;cursor:pointer;margin-top:12px">Submit Order →</button>
-      <div class="success-box" id="orderSuccess"></div>
-    </aside>
-  </div>
-</section>
+<section id="pricing" class="reveal"><div class="eye">Pricing</div><h2 class="title">Start small. Build up.</h2><p class="copy">Every project is different, so these are starting points. Join the Discord for an exact quote.</p><div class="prices">
+<div class="price"><h3>Starter</h3><div class="money">$5<small>+</small></div><ul><li>Small custom bot</li><li>1–3 core features</li><li>Basic setup help</li></ul><a class="btn secondary" href="/build/?tier=mini">Build Mini</a></div>
+<div class="price featured"><div class="eye">Most flexible</div><h3>Custom</h3><div class="money">$10<small>+</small></div><ul><li>Multiple custom systems</li><li>Interactive panels</li><li>Database features</li><li>Setup support</li></ul><a class="btn" href="/build/?tier=standard">Build Standard →</a></div>
+<div class="price"><h3>Pro</h3><div class="money">$15<small>+</small></div><ul><li>Advanced custom bot</li><li>Large feature set</li><li>Community tools</li><li>Custom workflows</li></ul><a class="btn secondary" href="/build/?tier=advanced">Build Advanced</a></div></div></section>
 
 <section id="portal" class="reveal">
   <div class="eye">ATLAST Portal</div>
@@ -207,7 +128,7 @@ body.intro-open{overflow:hidden}
   </div>
 </section>
 
-<section class="reveal"><div class="cta"><div class="eye">Let's build it</div><h2>Have a bot idea?</h2><p>Tell me what your server needs. Even if you don't know exactly how to build it yet.</p><a class="btn" href="#order">Build My Bot →</a></div></section>
+<section class="reveal"><div class="cta"><div class="eye">Let's build it</div><h2>Have a bot idea?</h2><p>Tell me what your server needs. Even if you don't know exactly how to build it yet.</p><a class="btn" href="/build/">Build My Bot →</a></div></section>
 </main><footer><div><b>ATLAST</b> • Custom Discord Bots</div><div>© 2026 ATLAST</div></footer>
 <script>
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.12});document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
@@ -354,51 +275,6 @@ supabase.auth.onAuthStateChange((event, session) => {
 });
 
 startPortal();
-</script>
-
-
-<script>
-(function(){
-  const totalEl=document.getElementById("quoteTotal"), linesEl=document.getElementById("quoteLines");
-  const success=document.getElementById("orderSuccess");
-  function selected(){
-    const pack=document.querySelector('input[name="package"]:checked');
-    const extras=[...document.querySelectorAll('#featureChoices input:checked')];
-    return [pack,...extras].filter(Boolean);
-  }
-  function updateQuote(){
-    const items=selected();
-    let total=0;
-    linesEl.innerHTML="";
-    for(const x of items){
-      const price=Number(x.value||0); total+=price;
-      const row=document.createElement("div"); row.className="quote-line";
-      const a=document.createElement("span"); a.textContent=x.dataset.name;
-      const b=document.createElement("strong"); b.textContent="$"+price;
-      row.append(a,b); linesEl.appendChild(row);
-    }
-    totalEl.textContent=total;
-    return total;
-  }
-  document.querySelectorAll('#order input[type="checkbox"],#order input[type="radio"]').forEach(x=>x.addEventListener("change",updateQuote));
-  updateQuote();
-
-  document.getElementById("submitOrder")?.addEventListener("click",()=>{
-    const botName=document.getElementById("orderBotName").value.trim();
-    const contact=document.getElementById("orderContact").value.trim();
-    const details=document.getElementById("orderDetails").value.trim();
-    if(!botName||!contact||!details){
-      success.style.display="block"; success.style.borderColor="#f59e0b66"; success.style.background="#f59e0b12"; success.style.color="#fde68a";
-      success.textContent="Fill in the bot name, project details and contact info first."; return;
-    }
-    const id="ATL-"+Math.random().toString(36).slice(2,8).toUpperCase();
-    const order={id,botName,contact,details,total:updateQuote(),features:selected().map(x=>x.dataset.name),createdAt:new Date().toISOString()};
-    const existing=JSON.parse(localStorage.getItem("atlast_orders")||"[]"); existing.push(order);
-    localStorage.setItem("atlast_orders",JSON.stringify(existing));
-    success.style.display="block"; success.style.borderColor="#34d39955"; success.style.background="#34d39912"; success.style.color="#a7f3d0";
-    success.innerHTML=`<b>Order ${id} created.</b><br>Your estimated total is $${order.total}. Keep this order number.`;
-  });
-})();
 </script>
 
 </body></html>
