@@ -27,7 +27,17 @@ section{padding:105px 0}.eye{color:#a58cff;text-transform:uppercase;font-size:12
 .portal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.mini{padding:14px;border:1px solid #ffffff12;border-radius:13px;background:#ffffff05}.mini b{display:block;margin-bottom:5px}.mini span{color:var(--muted);font-size:12px}
 .login-box{margin-top:18px;padding:18px;border:1px solid #5865f24d;border-radius:16px;background:#5865f210}.discord-btn{background:#5865F2}
 
-@media(max-width:800px){nav .links{display:none}.cards,.prices,.portal-wrap{grid-template-columns:1fr}.price.featured,.mock{transform:none}.demo{grid-template-columns:1fr}.side{display:none}.stats{grid-template-columns:1fr}}
+.freebot{position:relative;overflow:hidden;padding:38px;border:1px solid #62d8ff42;border-radius:26px;background:radial-gradient(circle at 85% 20%,#22d3ee1f,transparent 30%),radial-gradient(circle at 15% 85%,#8b5cf62b,transparent 36%),linear-gradient(145deg,#101329,#090c18)}
+.freebot:before{content:"N";position:absolute;right:32px;top:50%;transform:translateY(-54%);font-size:270px;font-weight:1000;line-height:1;color:transparent;-webkit-text-stroke:1px #8ecbff18;pointer-events:none}
+.freebot-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}
+.freebot-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #34d39942;border-radius:999px;background:#34d39912;color:#a7f3d0;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.freebot h2{font-size:clamp(42px,7vw,78px);letter-spacing:-.055em;margin:17px 0 13px}.nexora-grad{background:linear-gradient(90deg,#c276ff,#7975ff,#34dcff);-webkit-background-clip:text;color:transparent}
+.freebot p{color:var(--muted);line-height:1.75;max-width:610px}.freebot-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:23px}
+.nexora-btn{background:linear-gradient(120deg,#9b55ff,#4b78ff,#31dcff);box-shadow:0 13px 40px #615cf447}.freebot-list{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.freebot-feature{padding:14px;border:1px solid #ffffff14;border-radius:13px;background:#070a17a8;color:#cbd3ec;font-size:13px;font-weight:700;backdrop-filter:blur(8px)}.freebot-feature span{margin-right:7px}
+
+@media(max-width:800px){nav .links{display:none}.cards,.prices,.portal-wrap,.freebot-grid{grid-template-columns:1fr}.freebot-list{grid-template-columns:1fr 1fr}.freebot{padding:27px 21px}.price.featured,.mock{transform:none}.demo{grid-template-columns:1fr}.side{display:none}.stats{grid-template-columns:1fr}}
+@media(max-width:480px){.freebot-list{grid-template-columns:1fr}}
 
 /* ATLAST cinematic entrance */
 #intro{
@@ -70,7 +80,7 @@ body.intro-open{overflow:hidden}
 </div>
 
 <div class="grid"></div><div class="orb a"></div><div class="orb b"></div>
-<nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#why">Why ATLAST</a><a href="#portal">Customer Portal</a></div><a class="btn" href="/build/">Build My Bot ↗</a></nav>
+<nav><div class="brand"><div class="logo">A</div>ATLAST</div><div class="links"><a href="#services">Services</a><a href="#nexora">Free Bot</a><a href="#pricing">Pricing</a><a href="#why">Why ATLAST</a><a href="#portal">Customer Portal</a></div><a class="btn" href="/build/">Build My Bot ↗</a></nav>
 <main>
 <section class="hero"><div><div class="badge"><span class="dot"></span> Now accepting custom projects</div><h1>Discord bots.<br><span class="grad">Built different.</span></h1><p>Custom Discord systems designed around your community — from verification and tickets to economies, dashboards and completely original ideas.</p><div class="actions"><a class="btn" href="/build/">Build My Bot →</a><a class="btn secondary" href="#services">Explore Features ↓</a></div>
 <div class="mock"><div class="window"><div class="bar"><i></i><i></i><i></i></div><div class="demo"><div class="side"><b>ATLAST PRO</b><span class="on">◈ Dashboard</span><span>◉ Orders</span><span>◇ Customers</span><span>◎ Analytics</span><span>⚙ Settings</span></div><div class="content"><small>BUSINESS OVERVIEW</small><h3>Everything. One system.</h3><div class="stats"><div class="stat"><strong>24/7</strong><span>AUTOMATION</span></div><div class="stat"><strong>Custom</strong><span>WORKFLOWS</span></div><div class="stat"><strong>Fast</strong><span>SUPPORT</span></div></div></div></div></div></div></div></section>
@@ -82,6 +92,32 @@ body.intro-open{overflow:hidden}
 <div class="card"><div class="ico">📈</div><h3>Analytics</h3><p>Invite tracking, activity statistics, dashboards and useful data.</p></div>
 <div class="card"><div class="ico">⚡</div><h3>Your Idea</h3><p>Have something unusual in mind? Pitch the idea and let's build it.</p></div></div></section>
 <section id="why" class="reveal"><div class="eye">Why ATLAST</div><h2 class="title">Made for your server.</h2><div class="cards"><div class="card"><div class="ico">⌘</div><h3>Actually Custom</h3><p>No one-size-fits-all setup. Features can be designed around your community.</p></div><div class="card"><div class="ico">✦</div><h3>Polished UX</h3><p>Clean embeds, buttons, modals and interactions that feel like a real product.</p></div><div class="card"><div class="ico">↻</div><h3>Built to Grow</h3><p>Start simple and add systems later as your community grows.</p></div></div></section>
+
+<section id="nexora" class="reveal">
+  <div class="freebot">
+    <div class="freebot-grid">
+      <div>
+        <div class="freebot-badge"><span class="dot"></span> Free public bot</div>
+        <h2>Meet <span class="nexora-grad">NEXORA.</span></h2>
+        <p>Not ready to order a custom bot? NEXORA gives your server the essential tools it needs in one clean, completely free bot. Add it in seconds and start with <b>/nexora</b>.</p>
+        <div class="freebot-actions">
+          <a class="btn nexora-btn" href="https://discord.com/oauth2/authorize?client_id=1550614297527320767&amp;permissions=1099780156438&amp;integration_type=0&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">Add NEXORA Free →</a>
+          <a class="btn secondary" href="https://discord.gg/p5cD6JS8B" target="_blank" rel="noopener">Get Support</a>
+        </div>
+      </div>
+      <div class="freebot-list">
+        <div class="freebot-feature"><span>🛡️</span>Moderation</div>
+        <div class="freebot-feature"><span>🎫</span>Private Tickets</div>
+        <div class="freebot-feature"><span>👋</span>Welcome Messages</div>
+        <div class="freebot-feature"><span>🎨</span>Button Roles</div>
+        <div class="freebot-feature"><span>📝</span>Server Logs</div>
+        <div class="freebot-feature"><span>🚨</span>Panic Mode</div>
+        <div class="freebot-feature"><span>📊</span>Server Health</div>
+        <div class="freebot-feature"><span>⚙️</span>Easy Dashboard</div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="pricing" class="reveal"><div class="eye">Pricing</div><h2 class="title">Start small. Build up.</h2><p class="copy">Every project is different, so these are starting points. Join the Discord for an exact quote.</p><div class="prices">
 <div class="price"><h3>Starter</h3><div class="money">$5<small>+</small></div><ul><li>Small custom bot</li><li>1–3 core features</li><li>Basic setup help</li></ul><a class="btn secondary" href="/build/?tier=mini">Build Mini</a></div>
 <div class="price featured"><div class="eye">Most flexible</div><h3>Custom</h3><div class="money">$10<small>+</small></div><ul><li>Multiple custom systems</li><li>Interactive panels</li><li>Database features</li><li>Setup support</li></ul><a class="btn" href="/build/?tier=standard">Build Standard →</a></div>
