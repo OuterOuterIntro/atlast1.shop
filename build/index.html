@@ -1,102 +1,956 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build Your Bot — ATLAST</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Build Your Bot — ATLAST</title>
+
 <style>
-:root{--bg:#060811;--p:#8b5cf6;--c:#22d3ee;--g:#34d399;--text:#f6f7ff;--muted:#a5abc0}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 10%,#22d3ee16,transparent 28%),radial-gradient(circle at 85% 15%,#8b5cf625,transparent 30%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}a{color:inherit;text-decoration:none}nav{width:min(1120px,calc(100% - 28px));margin:16px auto;padding:14px 18px;border:1px solid #ffffff18;background:#080a14e8;border-radius:19px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:950;letter-spacing:.13em}.wrap{max-width:1120px;margin:auto;padding:55px 24px 90px}.eye{color:#a58cff;font-size:12px;font-weight:900;letter-spacing:.18em}.title{font-size:clamp(44px,7vw,76px);letter-spacing:-.055em;line-height:.95;margin:12px 0}.copy,.note{color:var(--muted);line-height:1.65}.builder{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:38px;align-items:start}.panel{padding:27px;border:1px solid #ffffff17;border-radius:22px;background:linear-gradient(145deg,#ffffff0d,#ffffff05)}.step{padding:20px 0;border-bottom:1px solid #ffffff10}.step h3{margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.option{display:flex;gap:9px;padding:14px;border:1px solid #ffffff14;border-radius:14px;background:#080b17;cursor:pointer}.option input{accent-color:#8b5cf6}.option small{display:block;color:var(--muted);margin-top:4px}.locked{display:none}.input,.textarea{width:100%;padding:14px;border:1px solid #ffffff18;border-radius:12px;background:#080b17;color:white;font:inherit}.textarea{min-height:115px}.quote{position:sticky;top:20px}.total{font-size:60px;font-weight:1000;letter-spacing:-.06em}.total small{font-size:13px;color:var(--muted);letter-spacing:0}.lines{display:grid;gap:8px;margin:18px 0}.line{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.line strong{color:white}.pill{font-size:10px;padding:5px 8px;border-radius:999px;background:#ffffff0b;color:#b7bdd0}.btn{width:100%;padding:14px;border:0;border-radius:13px;color:white;font-weight:900;background:linear-gradient(135deg,#7657ef,#318bd9);cursor:pointer}.success{display:none;margin-top:12px;padding:13px;border:1px solid #34d39955;background:#34d39912;color:#a7f3d0;border-radius:12px}@media(max-width:800px){.builder{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.quote{position:static}}
-</style></head><body><nav><a class="brand" href="/">ATLAST</a><a href="/" style="color:#a5abc0">← Main site</a></nav><main class="wrap"><div class="eye">ATLAST BOT BUILDER</div><h1 class="title">Build what you need.<br>Pay for what you use.</h1><p class="copy">Choose a build size. Smaller builds stay cheaper and only show the features that make sense for that level.</p><div class="builder"><section class="panel">
-<div class="step"><h3>1. Build size</h3><div class="grid">
-<label class="option"><input type="radio" name="tier" value="mini" checked><span><b>Mini</b><small>Up to 3 simple features</small><span class="pill">from $2</span></span></label>
-<label class="option"><input type="radio" name="tier" value="standard"><span><b>Standard</b><small>Up to 7 features</small><span class="pill">from $4</span></span></label>
-<label class="option"><input type="radio" name="tier" value="advanced"><span><b>Advanced</b><small>Complex systems unlocked</small><span class="pill">from $7</span></span></label></div></div>
-<div class="step"><h3>2. Features <span class="pill" id="limit"></span></h3><div class="grid" id="features">
-<label class="option" data-min="0"><input type="checkbox" value="0.75" data-name="Welcome + leave"><span><b>👋 Welcome + leave</b><small>+$0.75</small></span></label>
-<label class="option" data-min="0"><input type="checkbox" value="0.50" data-name="Autorole"><span><b>➕ Autorole</b><small>+$0.50</small></span></label>
-<label class="option" data-min="0"><input type="checkbox" value="1.25" data-name="Basic moderation"><span><b>🛡 Basic moderation</b><small>+$1.25</small></span></label>
-<label class="option" data-min="0"><input type="checkbox" value="0.50" data-name="Embeds"><span><b>✨ Embed commands</b><small>+$0.50</small></span></label>
-<label class="option" data-min="0"><input type="checkbox" value="0.75" data-name="Role panel"><span><b>🎨 Role panel</b><small>+$0.75</small></span></label>
-<label class="option" data-min="1"><input type="checkbox" value="1.50" data-name="Tickets"><span><b>🎫 Tickets</b><small>+$1.50</small></span></label>
-<label class="option" data-min="1"><input type="checkbox" value="1.75" data-name="Leveling"><span><b>🏆 Leveling</b><small>+$1.75</small></span></label>
-<label class="option" data-min="1"><input type="checkbox" value="1.50" data-name="YouTube alerts"><span><b>📺 YouTube alerts</b><small>+$1.50</small></span></label>
-<label class="option" data-min="1"><input type="checkbox" value="1.00" data-name="Logging"><span><b>📋 Logging</b><small>+$1.00</small></span></label>
-<label class="option" data-min="1"><input type="checkbox" value="0.75" data-name="Giveaways"><span><b>🎁 Giveaways</b><small>+$0.75</small></span></label>
-<label class="option" data-min="2"><input type="checkbox" value="2.50" data-name="Economy"><span><b>💰 Economy</b><small>+$2.50</small></span></label>
-<label class="option" data-min="2"><input type="checkbox" value="1.50" data-name="Invite tracking"><span><b>📈 Invite tracking</b><small>+$1.50</small></span></label>
-<label class="option" data-min="2"><input type="checkbox" value="1.75" data-name="Advanced verification"><span><b>✓ Advanced verification</b><small>+$1.75</small></span></label>
-<label class="option" data-min="2"><input type="checkbox" value="2.50" data-name="Custom workflow"><span><b>⚡ Custom workflow</b><small>+$2.50</small></span></label>
-</div></div><div class="step"><h3>3. Your bot</h3><input id="name" class="input" placeholder="Bot name"><br><br><textarea id="details" class="textarea" placeholder="Describe exactly what you want..."></textarea><br><br><input id="contact" class="input" placeholder="Discord username or email"></div></section>
-<aside class="panel quote"><div class="eye">LIVE ESTIMATE</div><div class="total">$<span id="total">2.00</span><small> estimated</small></div><div id="lines" class="lines"></div><p class="note">Your price updates automatically. A final quote is only needed if the written request adds work that was not selected here.</p><button id="submit" class="btn">Create Order →</button><div id="success" class="success"></div></aside></div></main>
+:root{
+  --bg:#060811;
+  --p:#8b5cf6;
+  --c:#22d3ee;
+  --g:#34d399;
+  --text:#f6f7ff;
+  --muted:#a5abc0
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 15% 10%,#22d3ee16,transparent 28%),
+    radial-gradient(circle at 85% 15%,#8b5cf625,transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif
+}
+
+a{
+  color:inherit;
+  text-decoration:none
+}
+
+nav{
+  width:min(1120px,calc(100% - 28px));
+  margin:16px auto;
+  padding:14px 18px;
+  border:1px solid #ffffff18;
+  background:#080a14e8;
+  border-radius:19px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.brand{
+  font-weight:950;
+  letter-spacing:.13em
+}
+
+.wrap{
+  max-width:1120px;
+  margin:auto;
+  padding:55px 24px 90px
+}
+
+.eye{
+  color:#a58cff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.18em
+}
+
+.title{
+  font-size:clamp(44px,7vw,76px);
+  letter-spacing:-.055em;
+  line-height:.95;
+  margin:12px 0
+}
+
+.copy,.note{
+  color:var(--muted);
+  line-height:1.65
+}
+
+.builder{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:16px;
+  margin-top:38px;
+  align-items:start
+}
+
+.panel{
+  padding:27px;
+  border:1px solid #ffffff17;
+  border-radius:22px;
+  background:linear-gradient(145deg,#ffffff0d,#ffffff05)
+}
+
+.step{
+  padding:20px 0;
+  border-bottom:1px solid #ffffff10
+}
+
+.step h3{
+  margin:0 0 12px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+
+.option{
+  display:flex;
+  gap:9px;
+  padding:14px;
+  border:1px solid #ffffff14;
+  border-radius:14px;
+  background:#080b17;
+  cursor:pointer;
+  transition:.2s
+}
+
+.option:hover{
+  border-color:#8b5cf688;
+  transform:translateY(-1px)
+}
+
+.option input{
+  accent-color:#8b5cf6
+}
+
+.option small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px
+}
+
+.locked{
+  display:none
+}
+
+.input,.textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid #ffffff18;
+  border-radius:12px;
+  background:#080b17;
+  color:white;
+  font:inherit;
+  outline:none
+}
+
+.input:focus,.textarea:focus{
+  border-color:#8b5cf6
+}
+
+.textarea{
+  min-height:115px;
+  resize:vertical
+}
+
+.quote{
+  position:sticky;
+  top:20px
+}
+
+.total{
+  font-size:60px;
+  font-weight:1000;
+  letter-spacing:-.06em
+}
+
+.total small{
+  font-size:13px;
+  color:var(--muted);
+  letter-spacing:0
+}
+
+.lines{
+  display:grid;
+  gap:8px;
+  margin:18px 0
+}
+
+.line{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:13px
+}
+
+.line strong{
+  color:white
+}
+
+.pill{
+  font-size:10px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#ffffff0b;
+  color:#b7bdd0
+}
+
+.btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:13px;
+  color:white;
+  font-weight:900;
+  background:linear-gradient(135deg,#7657ef,#318bd9);
+  cursor:pointer;
+  transition:.2s
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.1)
+}
+
+.btn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none
+}
+
+.success{
+  display:none;
+  margin-top:12px;
+  padding:13px;
+  border:1px solid #34d39955;
+  background:#34d39912;
+  color:#a7f3d0;
+  border-radius:12px;
+  line-height:1.5
+}
+
+.error{
+  border-color:#ef444455;
+  background:#ef444412;
+  color:#fecaca
+}
+
+@media(max-width:800px){
+  .builder{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .quote{position:static}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a class="brand" href="/">ATLAST</a>
+  <a href="/" style="color:#a5abc0">← Main site</a>
+</nav>
+
+<main class="wrap">
+
+<div class="eye">ATLAST BOT BUILDER</div>
+
+<h1 class="title">
+  Build what you need.<br>
+  Pay for what you use.
+</h1>
+
+<p class="copy">
+  Choose a build size. Smaller builds stay cheaper and only show
+  the features that make sense for that level.
+</p>
+
+<div class="builder">
+
+<section class="panel">
+
+<div class="step">
+
+<h3>1. Build size</h3>
+
+<div class="grid">
+
+<label class="option">
+<input type="radio" name="tier" value="mini" checked>
+<span>
+<b>Mini</b>
+<small>Up to 3 simple features</small>
+<span class="pill">from $2</span>
+</span>
+</label>
+
+<label class="option">
+<input type="radio" name="tier" value="standard">
+<span>
+<b>Standard</b>
+<small>Up to 7 features</small>
+<span class="pill">from $4</span>
+</span>
+</label>
+
+<label class="option">
+<input type="radio" name="tier" value="advanced">
+<span>
+<b>Advanced</b>
+<small>Complex systems unlocked</small>
+<span class="pill">from $7</span>
+</span>
+</label>
+
+</div>
+</div>
+
+
+<div class="step">
+
+<h3>
+2. Features
+<span class="pill" id="limit"></span>
+</h3>
+
+<div class="grid" id="features">
+
+<label class="option" data-min="0">
+<input type="checkbox" value="0.75" data-name="Welcome + leave">
+<span>
+<b>👋 Welcome + leave</b>
+<small>+$0.75</small>
+</span>
+</label>
+
+<label class="option" data-min="0">
+<input type="checkbox" value="0.50" data-name="Autorole">
+<span>
+<b>➕ Autorole</b>
+<small>+$0.50</small>
+</span>
+</label>
+
+<label class="option" data-min="0">
+<input type="checkbox" value="1.25" data-name="Basic moderation">
+<span>
+<b>🛡 Basic moderation</b>
+<small>+$1.25</small>
+</span>
+</label>
+
+<label class="option" data-min="0">
+<input type="checkbox" value="0.50" data-name="Embeds">
+<span>
+<b>✨ Embed commands</b>
+<small>+$0.50</small>
+</span>
+</label>
+
+<label class="option" data-min="0">
+<input type="checkbox" value="0.75" data-name="Role panel">
+<span>
+<b>🎨 Role panel</b>
+<small>+$0.75</small>
+</span>
+</label>
+
+<label class="option" data-min="1">
+<input type="checkbox" value="1.50" data-name="Tickets">
+<span>
+<b>🎫 Tickets</b>
+<small>+$1.50</small>
+</span>
+</label>
+
+<label class="option" data-min="1">
+<input type="checkbox" value="1.75" data-name="Leveling">
+<span>
+<b>🏆 Leveling</b>
+<small>+$1.75</small>
+</span>
+</label>
+
+<label class="option" data-min="1">
+<input type="checkbox" value="1.50" data-name="YouTube alerts">
+<span>
+<b>📺 YouTube alerts</b>
+<small>+$1.50</small>
+</span>
+</label>
+
+<label class="option" data-min="1">
+<input type="checkbox" value="1.00" data-name="Logging">
+<span>
+<b>📋 Logging</b>
+<small>+$1.00</small>
+</span>
+</label>
+
+<label class="option" data-min="1">
+<input type="checkbox" value="0.75" data-name="Giveaways">
+<span>
+<b>🎁 Giveaways</b>
+<small>+$0.75</small>
+</span>
+</label>
+
+<label class="option" data-min="2">
+<input type="checkbox" value="2.50" data-name="Economy">
+<span>
+<b>💰 Economy</b>
+<small>+$2.50</small>
+</span>
+</label>
+
+<label class="option" data-min="2">
+<input type="checkbox" value="1.50" data-name="Invite tracking">
+<span>
+<b>📈 Invite tracking</b>
+<small>+$1.50</small>
+</span>
+</label>
+
+<label class="option" data-min="2">
+<input type="checkbox" value="1.75" data-name="Advanced verification">
+<span>
+<b>✓ Advanced verification</b>
+<small>+$1.75</small>
+</span>
+</label>
+
+<label class="option" data-min="2">
+<input type="checkbox" value="2.50" data-name="Custom workflow">
+<span>
+<b>⚡ Custom workflow</b>
+<small>+$2.50</small>
+</span>
+</label>
+
+</div>
+</div>
+
+
+<div class="step">
+
+<h3>3. Your bot</h3>
+
+<input
+  id="name"
+  class="input"
+  maxlength="100"
+  placeholder="Bot name"
+>
+
+<br><br>
+
+<textarea
+  id="details"
+  class="textarea"
+  maxlength="1000"
+  placeholder="Describe exactly what you want..."
+></textarea>
+
+<br><br>
+
+<input
+  id="contact"
+  class="input"
+  maxlength="100"
+  placeholder="Discord username or email"
+>
+
+</div>
+
+</section>
+
+
+<aside class="panel quote">
+
+<div class="eye">LIVE ESTIMATE</div>
+
+<div class="total">
+$<span id="total">2.00</span>
+<small> estimated</small>
+</div>
+
+<div id="lines" class="lines"></div>
+
+<p class="note">
+Your price updates automatically. A final quote is only needed if the
+written request adds work that was not selected here.
+</p>
+
+<button id="submit" class="btn">
+Create Order →
+</button>
+
+<div id="success" class="success"></div>
+
+</aside>
+
+</div>
+</main>
+
+
 <script>
-const tiers={mini:{base:2,max:3,r:0},standard:{base:4,max:7,r:1},advanced:{base:7,max:99,r:2}};const rs=[...document.querySelectorAll('[name=tier]')],os=[...document.querySelectorAll('#features .option')];
-function tier(){return rs.find(x=>x.checked).value}function refresh(){let t=tier(),c=tiers[t];os.forEach(o=>{let lock=+o.dataset.min>c.r;o.classList.toggle('locked',lock);if(lock)o.querySelector('input').checked=false});let s=os.filter(o=>o.querySelector('input').checked);if(s.length>c.max){s.slice(c.max).forEach(o=>o.querySelector('input').checked=false);s=s.slice(0,c.max)}limit.textContent=c.max==99?'all unlocked':`${s.length}/${c.max} selected`;let sum=c.base;lines.innerHTML=`<div class="line"><span>${t} build</span><strong>$${c.base.toFixed(2)}</strong></div>`;s.forEach(o=>{let i=o.querySelector('input'),v=+i.value;sum+=v;lines.innerHTML+=`<div class="line"><span>${i.dataset.name}</span><strong>+$${v.toFixed(2)}</strong></div>`});total.textContent=sum.toFixed(2);return sum}
-rs.forEach(x=>x.onchange=refresh);os.forEach(o=>o.querySelector('input').onchange=e=>{let c=tiers[tier()],s=os.filter(x=>x.querySelector('input').checked);if(s.length>c.max){e.target.checked=false;alert(`Choose a larger build to use more than ${c.max} features.`)}refresh()});let q=new URLSearchParams(location.search).get('tier');if(q){let r=rs.find(x=>x.value==q);if(r)r.checked=true}refresh();
-submit.onclick = async () => {
-  success.style.display = 'block';
 
-  const botName = name.value.trim();
-  const description = details.value.trim();
-  const contactInfo = contact.value.trim();
+const WORKER_URL =
+  'https://delicate-shape-dfd1.johnsonxander343.workers.dev/';
 
-  if (!botName || !description || !contactInfo) {
-    success.textContent =
-      'Fill in the bot name, description, and contact info.';
-    return;
-  }
 
-  submit.disabled = true;
-  submit.textContent = 'Sending Order...';
+const tiers = {
+  mini:{
+    base:2,
+    max:3,
+    r:0
+  },
 
-  const orderId =
-    'ATL-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+  standard:{
+    base:4,
+    max:7,
+    r:1
+  },
 
-  const selectedFeatures = os
-    .filter(o => o.querySelector('input').checked)
-    .map(o => o.querySelector('input').dataset.name);
-
-  const order = {
-    orderId: orderId,
-    botName: botName,
-    contact: contactInfo,
-    details: description,
-    tier: tier(),
-    features: selectedFeatures,
-    price: refresh()
-  };
-
-  try {
-    const response = await fetch(
-      'https://delicate-shape-dfd1.johnsonxander343.workers.dev/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(order)
-      }
-    );
-
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-      throw new Error(result.error || 'Order failed');
-    }
-
-    success.innerHTML = `
-      <b>✅ Order sent!</b><br>
-      Order ID: <b>${orderId}</b><br>
-      Estimated price: <b>$${refresh().toFixed(2)}</b><br>
-      <small>We'll contact you using the information you provided.</small>
-    `;
-
-    submit.textContent = 'Order Sent ✓';
-
-  } catch (error) {
-    console.error(error);
-
-    success.innerHTML = `
-      <b>❌ Couldn't send order.</b><br>
-      <small>Please try again in a moment.</small>
-    `;
-
-    submit.disabled = false;
-    submit.textContent = 'Create Order →';
+  advanced:{
+    base:7,
+    max:99,
+    r:2
   }
 };
-</script></body></html>
+
+
+const tierRadios =
+  [...document.querySelectorAll('[name="tier"]')];
+
+const options =
+  [...document.querySelectorAll('#features .option')];
+
+const limitElement =
+  document.getElementById('limit');
+
+const linesElement =
+  document.getElementById('lines');
+
+const totalElement =
+  document.getElementById('total');
+
+const submitButton =
+  document.getElementById('submit');
+
+const successBox =
+  document.getElementById('success');
+
+
+function getTier(){
+
+  const selected =
+    tierRadios.find(radio => radio.checked);
+
+  return selected ? selected.value : 'mini';
+}
+
+
+function refresh(){
+
+  const selectedTier = getTier();
+  const config = tiers[selectedTier];
+
+
+  options.forEach(option => {
+
+    const requiredLevel =
+      Number(option.dataset.min);
+
+    const locked =
+      requiredLevel > config.r;
+
+    option.classList.toggle(
+      'locked',
+      locked
+    );
+
+    if(locked){
+
+      option.querySelector(
+        'input'
+      ).checked = false;
+
+    }
+
+  });
+
+
+  let selectedOptions =
+    options.filter(option =>
+      option.querySelector('input').checked
+    );
+
+
+  if(selectedOptions.length > config.max){
+
+    selectedOptions
+      .slice(config.max)
+      .forEach(option => {
+
+        option.querySelector(
+          'input'
+        ).checked = false;
+
+      });
+
+    selectedOptions =
+      selectedOptions.slice(
+        0,
+        config.max
+      );
+
+  }
+
+
+  if(config.max === 99){
+
+    limitElement.textContent =
+      'all unlocked';
+
+  }else{
+
+    limitElement.textContent =
+      `${selectedOptions.length}/${config.max} selected`;
+
+  }
+
+
+  let price = config.base;
+
+
+  linesElement.innerHTML = `
+    <div class="line">
+      <span>${selectedTier} build</span>
+      <strong>$${config.base.toFixed(2)}</strong>
+    </div>
+  `;
+
+
+  selectedOptions.forEach(option => {
+
+    const input =
+      option.querySelector('input');
+
+    const featurePrice =
+      Number(input.value);
+
+    price += featurePrice;
+
+
+    linesElement.innerHTML += `
+      <div class="line">
+        <span>${input.dataset.name}</span>
+        <strong>+$${featurePrice.toFixed(2)}</strong>
+      </div>
+    `;
+
+  });
+
+
+  totalElement.textContent =
+    price.toFixed(2);
+
+
+  return price;
+}
+
+
+tierRadios.forEach(radio => {
+
+  radio.addEventListener(
+    'change',
+    refresh
+  );
+
+});
+
+
+options.forEach(option => {
+
+  const checkbox =
+    option.querySelector('input');
+
+
+  checkbox.addEventListener(
+    'change',
+    event => {
+
+      const config =
+        tiers[getTier()];
+
+
+      const selected =
+        options.filter(option =>
+          option.querySelector('input').checked
+        );
+
+
+      if(selected.length > config.max){
+
+        event.target.checked = false;
+
+        alert(
+          `Choose a larger build to use more than ${config.max} features.`
+        );
+
+      }
+
+
+      refresh();
+
+    }
+  );
+
+});
+
+
+const queryTier =
+  new URLSearchParams(
+    window.location.search
+  ).get('tier');
+
+
+if(queryTier){
+
+  const matchingRadio =
+    tierRadios.find(
+      radio =>
+        radio.value === queryTier
+    );
+
+
+  if(matchingRadio){
+
+    matchingRadio.checked = true;
+
+  }
+
+}
+
+
+refresh();
+
+
+
+submitButton.addEventListener(
+  'click',
+  async () => {
+
+
+    const botName =
+      document
+        .getElementById('name')
+        .value
+        .trim();
+
+
+    const details =
+      document
+        .getElementById('details')
+        .value
+        .trim();
+
+
+    const contact =
+      document
+        .getElementById('contact')
+        .value
+        .trim();
+
+
+    successBox.style.display =
+      'block';
+
+    successBox.classList.remove(
+      'error'
+    );
+
+
+    if(
+      !botName ||
+      !details ||
+      !contact
+    ){
+
+      successBox.classList.add(
+        'error'
+      );
+
+      successBox.textContent =
+        'Fill in the bot name, description, and contact info.';
+
+      return;
+
+    }
+
+
+    const selectedFeatures =
+      options
+        .filter(option =>
+          option.querySelector('input').checked
+        )
+        .map(option =>
+          option.querySelector('input').dataset.name
+        );
+
+
+    const price =
+      refresh();
+
+
+    const orderId =
+      'ATL-' +
+      Math.random()
+        .toString(36)
+        .slice(2,8)
+        .toUpperCase();
+
+
+    const order = {
+
+      orderId:orderId,
+
+      botName:botName,
+
+      contact:contact,
+
+      details:details,
+
+      tier:getTier(),
+
+      features:selectedFeatures,
+
+      price:price
+
+    };
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+      'Sending Order...';
+
+
+    successBox.textContent =
+      'Sending your order...';
+
+
+    try{
+
+
+      const response =
+        await fetch(
+          WORKER_URL,
+          {
+
+            method:'POST',
+
+            headers:{
+              'Content-Type':
+                'application/json'
+            },
+
+            body:
+              JSON.stringify(order)
+
+          }
+        );
+
+
+      let result;
+
+
+      try{
+
+        result =
+          await response.json();
+
+      }catch{
+
+        throw new Error(
+          'The order server returned an invalid response.'
+        );
+
+      }
+
+
+      if(
+        !response.ok ||
+        !result.success
+      ){
+
+        throw new Error(
+          result.error ||
+          'The order could not be sent.'
+        );
+
+      }
+
+
+      successBox.classList.remove(
+        'error'
+      );
+
+
+      successBox.innerHTML = `
+        <b>✅ Order sent!</b><br><br>
+
+        Order ID:
+        <b>${orderId}</b><br>
+
+        Estimated price:
+        <b>$${price.toFixed(2)}</b><br><br>
+
+        <small>
+          We'll contact you using the information you provided.
+        </small>
+      `;
+
+
+      submitButton.textContent =
+        'Order Sent ✓';
+
+
+    }catch(error){
+
+
+      console.error(
+        'ATLAST ORDER ERROR:',
+        error
+      );
+
+
+      successBox.classList.add(
+        'error'
+      );
+
+
+      successBox.innerHTML = `
+        <b>❌ Couldn't send order.</b><br>
+        <small>
+          ${error.message}
+        </small>
+      `;
+
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        'Create Order →';
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
