@@ -27,5 +27,76 @@
 const tiers={mini:{base:2,max:3,r:0},standard:{base:4,max:7,r:1},advanced:{base:7,max:99,r:2}};const rs=[...document.querySelectorAll('[name=tier]')],os=[...document.querySelectorAll('#features .option')];
 function tier(){return rs.find(x=>x.checked).value}function refresh(){let t=tier(),c=tiers[t];os.forEach(o=>{let lock=+o.dataset.min>c.r;o.classList.toggle('locked',lock);if(lock)o.querySelector('input').checked=false});let s=os.filter(o=>o.querySelector('input').checked);if(s.length>c.max){s.slice(c.max).forEach(o=>o.querySelector('input').checked=false);s=s.slice(0,c.max)}limit.textContent=c.max==99?'all unlocked':`${s.length}/${c.max} selected`;let sum=c.base;lines.innerHTML=`<div class="line"><span>${t} build</span><strong>$${c.base.toFixed(2)}</strong></div>`;s.forEach(o=>{let i=o.querySelector('input'),v=+i.value;sum+=v;lines.innerHTML+=`<div class="line"><span>${i.dataset.name}</span><strong>+$${v.toFixed(2)}</strong></div>`});total.textContent=sum.toFixed(2);return sum}
 rs.forEach(x=>x.onchange=refresh);os.forEach(o=>o.querySelector('input').onchange=e=>{let c=tiers[tier()],s=os.filter(x=>x.querySelector('input').checked);if(s.length>c.max){e.target.checked=false;alert(`Choose a larger build to use more than ${c.max} features.`)}refresh()});let q=new URLSearchParams(location.search).get('tier');if(q){let r=rs.find(x=>x.value==q);if(r)r.checked=true}refresh();
-submit.onclick=()=>{success.style.display='block';if(!name.value.trim()||!details.value.trim()||!contact.value.trim()){success.textContent='Fill in the bot name, description, and contact info.';return}let id='ATL-'+Math.random().toString(36).slice(2,8).toUpperCase();success.innerHTML=`<b>${id}</b> created • estimated $${refresh().toFixed(2)}<br><small>This demo still needs the database connection before public launch.</small>`}
+submit.onclick = async () => {
+  success.style.display = 'block';
+
+  const botName = name.value.trim();
+  const description = details.value.trim();
+  const contactInfo = contact.value.trim();
+
+  if (!botName || !description || !contactInfo) {
+    success.textContent =
+      'Fill in the bot name, description, and contact info.';
+    return;
+  }
+
+  submit.disabled = true;
+  submit.textContent = 'Sending Order...';
+
+  const orderId =
+    'ATL-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+
+  const selectedFeatures = os
+    .filter(o => o.querySelector('input').checked)
+    .map(o => o.querySelector('input').dataset.name);
+
+  const order = {
+    orderId: orderId,
+    botName: botName,
+    contact: contactInfo,
+    details: description,
+    tier: tier(),
+    features: selectedFeatures,
+    price: refresh()
+  };
+
+  try {
+    const response = await fetch(
+      'https://delicate-shape-dfd1.johnsonxander343.workers.dev/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(order)
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || 'Order failed');
+    }
+
+    success.innerHTML = `
+      <b>✅ Order sent!</b><br>
+      Order ID: <b>${orderId}</b><br>
+      Estimated price: <b>$${refresh().toFixed(2)}</b><br>
+      <small>We'll contact you using the information you provided.</small>
+    `;
+
+    submit.textContent = 'Order Sent ✓';
+
+  } catch (error) {
+    console.error(error);
+
+    success.innerHTML = `
+      <b>❌ Couldn't send order.</b><br>
+      <small>Please try again in a moment.</small>
+    `;
+
+    submit.disabled = false;
+    submit.textContent = 'Create Order →';
+  }
+};
 </script></body></html>
