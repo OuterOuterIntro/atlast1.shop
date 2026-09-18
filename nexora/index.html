@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070b1d">
+  <title>NEXORA — Your server. Simplified.</title>
+  <meta name="description" content="NEXORA is a free all-around Discord bot for moderation, tickets, welcome messages, roles, logs and server health.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oxanium:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#050817;--panel:rgba(13,20,48,.68);--line:rgba(134,167,255,.16);--text:#f7f9ff;--muted:#aab5d6;--violet:#9b55ff;--cyan:#31dcff;--blue:#4b78ff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 20% 15%,rgba(130,59,255,.20),transparent 30%),radial-gradient(circle at 82% 30%,rgba(18,201,255,.15),transparent 29%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,auto,42px 42px,42px 42px;z-index:-2}
+    #stars{position:fixed;inset:0;z-index:-1;opacity:.58}.wrap{width:min(1120px,calc(100% - 38px));margin:auto}.nav{height:80px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:white;font:700 21px Oxanium;letter-spacing:.13em}.brand img{width:44px;height:44px;border-radius:13px;box-shadow:0 0 28px rgba(83,138,255,.35)}
+    .navlinks{display:flex;gap:28px;align-items:center}.navlinks a{color:#c9d2ef;text-decoration:none;font-size:14px;font-weight:600}.navlinks a:hover{color:white}.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 21px;border:1px solid transparent;border-radius:13px;text-decoration:none;font-weight:800;color:white;transition:.22s transform,.22s box-shadow,.22s border-color}.button:hover{transform:translateY(-2px)}.primary{background:linear-gradient(110deg,var(--violet),var(--blue),var(--cyan));box-shadow:0 12px 35px rgba(84,91,255,.28)}.secondary{background:rgba(255,255,255,.045);border-color:var(--line);color:#dce4ff}.secondary:hover{border-color:rgba(92,207,255,.5)}
+    .hero{min-height:680px;padding:76px 0 95px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid rgba(88,207,255,.25);border-radius:999px;background:rgba(24,34,74,.65);color:#b9eaff;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.dot{width:8px;height:8px;border-radius:50%;background:#47e6b1;box-shadow:0 0 13px #47e6b1}.hero h1{font:700 clamp(54px,8vw,94px)/.95 Oxanium;margin:26px 0 18px;letter-spacing:-.045em}.gradient{background:linear-gradient(100deg,#d987ff 10%,#7b78ff 50%,#35e6ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px rgba(84,122,255,.18)}.hero p{font-size:18px;line-height:1.75;color:var(--muted);max-width:620px;margin:0 0 31px}.actions{display:flex;gap:12px;flex-wrap:wrap}.trust{display:flex;gap:18px;margin-top:30px;color:#8290b7;font-size:13px}.trust span:before{content:"✓";color:#4be2b1;margin-right:6px}
+    .visual{position:relative;display:grid;place-items:center}.halo{position:absolute;width:410px;height:410px;border-radius:50%;background:conic-gradient(from 0deg,transparent,#a853ff,transparent,#31dfff,transparent);filter:blur(38px);opacity:.25;animation:spin 12s linear infinite}.logo-card{position:relative;width:min(430px,92vw);aspect-ratio:1;border-radius:38px;padding:22px;background:linear-gradient(145deg,rgba(125,78,255,.24),rgba(28,220,255,.08));border:1px solid rgba(150,185,255,.19);box-shadow:0 35px 100px rgba(0,0,0,.5),inset 0 0 60px rgba(81,106,255,.08);backdrop-filter:blur(18px);animation:float 5s ease-in-out infinite}.logo-card img{width:100%;height:100%;object-fit:cover;border-radius:25px}.chip{position:absolute;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(8,13,34,.83);backdrop-filter:blur(12px);color:#dbe3ff;font-size:12px;font-weight:700;box-shadow:0 14px 30px rgba(0,0,0,.3)}.c1{top:11%;right:-7%}.c2{bottom:14%;left:-9%}.chip b{color:#56e0ff}
+    section{padding:96px 0}.section-head{text-align:center;max-width:730px;margin:0 auto 44px}.kicker{font:700 12px Oxanium;color:#6ce2ff;letter-spacing:.2em;text-transform:uppercase}.section-head h2{font:700 clamp(34px,5vw,55px)/1.08 Oxanium;margin:14px 0}.section-head p{color:var(--muted);line-height:1.7}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{padding:25px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,rgba(17,25,57,.73),rgba(8,13,32,.55));transition:.25s}.card:hover{transform:translateY(-5px);border-color:rgba(96,193,255,.4);box-shadow:0 18px 45px rgba(0,0,0,.28)}.icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:linear-gradient(145deg,rgba(151,73,255,.28),rgba(45,212,255,.18));border:1px solid rgba(138,148,255,.2)}.card h3{margin:18px 0 9px;font:700 17px Oxanium}.card p{margin:0;color:#9da9ca;font-size:14px;line-height:1.65}
+    .cta{margin:20px 0 95px;padding:55px;border:1px solid rgba(113,154,255,.23);border-radius:27px;text-align:center;background:radial-gradient(circle at 50% 0,rgba(111,57,255,.26),transparent 55%),rgba(11,17,42,.75);box-shadow:0 30px 100px rgba(0,0,0,.3)}.cta h2{font:700 clamp(31px,5vw,52px) Oxanium;margin:0 0 12px}.cta p{color:var(--muted);margin:0 auto 26px}.footer{border-top:1px solid var(--line);padding:28px 0 40px;color:#7481a6;font-size:13px}.footer .wrap{display:flex;justify-content:space-between;gap:20px}.footer a{color:#aebada;text-decoration:none}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-12px)}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center;padding-top:45px}.hero p{margin-left:auto;margin-right:auto}.actions,.trust{justify-content:center}.visual{order:-1}.logo-card{width:300px}.grid{grid-template-columns:repeat(2,1fr)}.navlinks a:not(.button){display:none}}
+    @media(max-width:560px){.wrap{width:min(100% - 25px,1120px)}.hero{gap:42px;min-height:auto}.logo-card{width:245px;border-radius:28px}.chip{display:none}.grid{grid-template-columns:1fr}.cta{padding:39px 20px}.trust{flex-direction:column;gap:7px}.footer .wrap{flex-direction:column}.brand{font-size:17px}.nav .button{padding:0 13px;min-height:43px}}
+  </style>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <header class="wrap nav">
+    <a class="brand" href="/"><img src="nexora-logo.png" alt="NEXORA logo">NEXORA</a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#features">Features</a><a href="#about">About</a>
+      <a class="button primary" href="https://discord.com/oauth2/authorize?client_id=1550614297527320767&amp;permissions=1099780156438&amp;integration_type=0&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">Add to Discord</a>
+    </nav>
+  </header>
+  <main>
+    <section class="wrap hero" id="about">
+      <div>
+        <span class="eyebrow"><i class="dot"></i>Free Discord management</span>
+        <h1>Your server.<br><span class="gradient">Simplified.</span></h1>
+        <p>NEXORA brings moderation, welcome messages, logs, roles, tickets, emergency tools and server health into one clean bot—without the clutter.</p>
+        <div class="actions">
+          <a class="button primary" href="https://discord.com/oauth2/authorize?client_id=1550614297527320767&amp;permissions=1099780156438&amp;integration_type=0&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">＋ Add NEXORA</a>
+          <a class="button secondary" href="#features">Explore features ↓</a>
+        </div>
+        <div class="trust"><span>Completely free</span><span>Simple setup</span><span>No paid APIs</span></div>
+      </div>
+      <div class="visual">
+        <div class="halo"></div>
+        <div class="logo-card"><img src="nexora-logo.png" alt="Purple and cyan NEXORA emblem"><div class="chip c1"><b>●</b> ONLINE</div><div class="chip c2">⚡ One bot. Every essential.</div></div>
+      </div>
+    </section>
+    <section class="wrap" id="features">
+      <div class="section-head"><span class="kicker">Everything you need</span><h2>Powerful essentials.<br>One simple dashboard.</h2><p>NEXORA handles the everyday work so your team can focus on the community.</p></div>
+      <div class="grid">
+        <article class="card"><div class="icon">🛡️</div><h3>Moderation</h3><p>Warnings, timeouts, kicks, bans and message cleanup with clear permission checks.</p></article>
+        <article class="card"><div class="icon">🎫</div><h3>Private Tickets</h3><p>Members can open private support channels through an easy button panel.</p></article>
+        <article class="card"><div class="icon">👋</div><h3>Welcome System</h3><p>Greet new members with a customizable message in the channel you choose.</p></article>
+        <article class="card"><div class="icon">🎨</div><h3>Button Roles</h3><p>Let members add or remove server roles without asking staff for help.</p></article>
+        <article class="card"><div class="icon">📝</div><h3>Server Logs</h3><p>Keep track of member joins, leaves and deleted messages in one place.</p></article>
+        <article class="card"><div class="icon">🚨</div><h3>Panic Mode</h3><p>Quickly lock text channels during an emergency and restore them afterward.</p></article>
+        <article class="card"><div class="icon">📊</div><h3>Server Health</h3><p>Get a quick report covering setup, permissions and possible cleanup.</p></article>
+        <article class="card"><div class="icon">⚙️</div><h3>Easy Dashboard</h3><p>Find major tools from one polished, private slash-command dashboard.</p></article>
+      </div>
+    </section>
+    <section class="wrap"><div class="cta"><h2>Ready to simplify your server?</h2><p>Add NEXORA free and start with <strong>/nexora</strong>.</p><a class="button primary" href="https://discord.com/oauth2/authorize?client_id=1550614297527320767&amp;permissions=1099780156438&amp;integration_type=0&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">Add NEXORA to Discord</a></div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><span>© 2026 NEXORA • Your server. Simplified.</span><span><a href="/">ATLAST Home</a> · <a href="https://discord.gg/p5cD6JS8B">Support Server</a></span></div></footer>
+  <script>
+    const c=document.querySelector('#stars'),x=c.getContext('2d');let points=[];
+    function size(){c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);points=Array.from({length:Math.min(80,Math.floor(innerWidth/15))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.17,vy:(Math.random()-.5)*.17}))}
+    function draw(){x.clearRect(0,0,innerWidth,innerHeight);points.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1;x.fillStyle='#77cfff';x.fillRect(p.x,p.y,1.5,1.5);for(let j=i+1;j<points.length;j++){let q=points[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<115){x.strokeStyle=`rgba(100,120,255,${(1-d/115)*.12})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});requestAnimationFrame(draw)}
+    addEventListener('resize',size);size();draw();
+  </script>
+</body>
+</html>
