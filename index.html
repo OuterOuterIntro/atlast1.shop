@@ -208,7 +208,8 @@ document.getElementById("enterSite").addEventListener("click",()=>{
 resizeNet();drawNet();
 
 </script>
-<script type="module">
+<!-- Old Supabase portal code retained only for reference and intentionally disabled. -->
+<script type="text/plain" id="disabled-supabase-portal">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL = "https://zidfjkdeyalmwdiapwnq.supabase.co/auth/v1/callback";
@@ -312,5 +313,6 @@ supabase.auth.onAuthStateChange((event, session) => {
 
 startPortal();
 </script>
+<script src="/portal-auth.js" defer></script>
 
 </body></html>
