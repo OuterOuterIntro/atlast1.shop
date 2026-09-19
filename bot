@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Bot | ATLAST</title>
+  <style>
+    :root{--bg:#060813;--panel:#0e1222;--line:#ffffff18;--text:#f4f6ff;--muted:#98a1bc;--purple:#8b5cf6;--blue:#5865f2;--green:#57f287}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 18% 8%,#39206c55,transparent 32%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between;max-width:1050px;margin:auto;padding:0 22px;border-bottom:1px solid var(--line)}
+    .brand{font-weight:900;letter-spacing:.08em}.back{color:#c4b5fd;text-decoration:none}.wrap{max-width:1050px;margin:52px auto;padding:0 22px}.eye{color:#a78bfa;text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:800}
+    h1{font-size:clamp(38px,7vw,72px);margin:10px 0 12px}.copy{color:var(--muted);font-size:17px}.grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;margin-top:34px}.card{background:linear-gradient(145deg,#ffffff0d,#ffffff05);border:1px solid var(--line);border-radius:22px;padding:25px}.status{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:800}.row{padding:16px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.row small{color:var(--muted);display:block;margin-bottom:6px}.row strong{overflow-wrap:anywhere}.btn{display:inline-flex;margin-top:18px;padding:12px 17px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--blue));color:white;text-decoration:none;font-weight:800;border:0;cursor:pointer}.error{color:#ff9b9b}.skeleton{opacity:.65}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav><div class="brand">ATLAST</div><a class="back" href="/#portal">← Customer Portal</a></nav>
+  <main class="wrap">
+    <div class="eye">Private bot dashboard</div>
+    <h1 id="botName">Loading your bot…</h1>
+    <p class="copy" id="subtitle">Verifying your linked Discord account.</p>
+    <div class="grid" id="dashboard" hidden>
+      <section class="card">
+        <div class="status">● ACCOUNT LINKED</div>
+        <div class="row"><small>BOT PROJECT</small><strong id="projectName"></strong></div>
+        <div class="row"><small>PROJECT KEY</small><strong id="projectKey"></strong></div>
+        <div class="row"><small>SOURCE SERVER</small><strong id="guildId"></strong></div>
+      </section>
+      <aside class="card">
+        <div class="eye">Recovery</div>
+        <h2>Authorization ready</h2>
+        <p class="copy">This account approved ATLAST through Discord. Access can be revoked from Discord's Authorized Apps settings.</p>
+        <a class="btn" href="/#portal">Back to Portal</a>
+      </aside>
+    </div>
+    <section class="card error" id="error" hidden>
+      <h2>Sign-in required</h2>
+      <p>Use the private button created by <code>/linkbot</code>, then return to this page.</p>
+      <a class="btn" href="/#portal">Return to Portal</a>
+    </section>
+  </main>
+  <script>
+    const API="https://auth.atlast1.shop";
+    const esc=value=>{const node=document.createElement("div");node.textContent=String(value??"");return node.innerHTML};
+    async function load(){
+      try{
+        const response=await fetch(`${API}/api/me`,{credentials:"include",headers:{Accept:"application/json"}});
+        if(!response.ok)throw new Error("Not linked");
+        const account=await response.json();
+        const appId=new URLSearchParams(location.search).get("app");
+        const bots=Array.isArray(account.bots)?account.bots:[];
+        const bot=bots.find(item=>String(item.application_id)===String(appId));
+        if(!bot)throw new Error("Bot is not assigned to this account");
+        document.getElementById("botName").textContent=esc(bot.display_name);
+        document.getElementById("subtitle").textContent="Your private ATLAST bot project page.";
+        document.getElementById("projectName").textContent=esc(bot.display_name);
+        document.getElementById("guildId").textContent=esc(account.source_guild_id);
+        document.getElementById("projectKey").textContent=esc(bot.application_id);
+        const card=document.querySelector(".card");
+        if(bot.avatar_url){
+          const image=document.createElement("img"); image.src=bot.avatar_url; image.alt=""; image.width=84; image.height=84;
+          image.style.cssText="border-radius:22px;margin:16px 0;display:block"; card.insertBefore(image,card.children[1]);
+        }
+        const commands=Array.isArray(bot.commands)?bot.commands:[];
+        const commandRow=document.createElement("div"); commandRow.className="row";
+        commandRow.innerHTML=`<small>COMMANDS (${commands.length})</small>${commands.length?commands.map(c=>`<div style="padding:8px 0"><strong>/${esc(c.name)}</strong><br><span style="color:var(--muted)">${esc(c.description||"No description")}</span></div>`).join(""):"<span style='color:var(--muted)'>Waiting for this bot to sync its commands.</span>"}`;
+        card.appendChild(commandRow);
+        document.getElementById("dashboard").hidden=false;
+      }catch(error){
+        document.getElementById("botName").textContent="No bot loaded";
+        document.getElementById("subtitle").textContent="ATLAST could not find a linked project for this browser.";
+        document.getElementById("error").hidden=false;
+      }
+    }
+    load();
+  </script>
+</body>
+</html>
