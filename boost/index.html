@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070913">
+  <title>ATLAST — Server Boosts</title>
+  <style>
+    :root{--bg:#060811;--panel:#0d101d;--purple:#8b5cf6;--cyan:#22d3ee;--green:#34d399;--text:#f7f8ff;--muted:#a6adc4;--line:#ffffff18}
+    *{box-sizing:border-box}html{color-scheme:dark}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 20%,#22d3ee22,transparent 29%),radial-gradient(circle at 84% 14%,#8b5cf630,transparent 32%),#060811}
+    .grid{position:fixed;inset:0;z-index:-2;opacity:.28;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:48px 48px}
+    .orb{position:fixed;width:370px;height:370px;border-radius:50%;filter:blur(100px);opacity:.12;z-index:-1;background:var(--purple);right:-120px;bottom:-100px}
+    nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(1120px,calc(100% - 28px));display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border:1px solid var(--line);background:#080a14d4;backdrop-filter:blur(18px);border-radius:19px;z-index:20}
+    .brand{color:#fff;text-decoration:none;font-weight:950;letter-spacing:.13em;display:flex;align-items:center;gap:10px}.logo{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:#071019;font-weight:1000;background:linear-gradient(135deg,var(--cyan),var(--purple),#f5c76b)}
+    nav .links{display:flex;align-items:center;gap:20px}nav .links a{color:#abb1c6;text-decoration:none;font-size:14px}.btn{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border-radius:13px;color:#fff;text-decoration:none;font:800 14px inherit;background:linear-gradient(135deg,#7657ef,#318bd9);box-shadow:0 12px 35px #6755e638;transition:.22s}.btn:hover{transform:translateY(-2px);box-shadow:0 17px 45px #6755e65c}.btn:focus-visible,.choice:focus-visible,.stepper button:focus-visible,input:focus-visible{outline:3px solid #22d3ee88;outline-offset:3px}.secondary{background:#ffffff0b;border:1px solid var(--line);box-shadow:none}
+    main{width:min(1120px,calc(100% - 32px));margin:auto;padding:145px 0 75px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#bbaaff;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+    h1{font-size:clamp(48px,8vw,88px);line-height:.94;letter-spacing:-.06em;margin:17px 0 15px}.grad{background:linear-gradient(90deg,#fff,#7dd3fc,#a78bfa,#f6d58b);-webkit-background-clip:text;color:transparent}.lead{max-width:700px;color:var(--muted);font-size:clamp(16px,2vw,20px);line-height:1.7;margin:0}
+    .layout{display:grid;grid-template-columns:1fr .82fr;gap:17px;margin-top:48px;align-items:start}.panel{border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#ffffff0e,#ffffff05);padding:27px;box-shadow:0 35px 80px #0005}.panel h2{font-size:23px;margin:0 0 7px}.hint{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 20px}.label{display:block;color:#d9dded;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:25px 0 11px}
+    .choices{display:grid;grid-template-columns:1fr 1fr;gap:11px}.choice{position:relative;border:1px solid var(--line);border-radius:16px;padding:17px;text-align:left;color:var(--text);background:#090c18;cursor:pointer;transition:.2s}.choice:hover{border-color:#a78bfa70}.choice.active{border-color:#9c74ff;background:#8b5cf617;box-shadow:inset 0 0 0 1px #8b5cf633}.choice strong{display:block;font-size:17px}.choice span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.choice .check{position:absolute;right:14px;top:14px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:#8b5cf622;color:transparent}.choice.active .check{color:#fff;background:var(--purple)}
+    .stepper{display:grid;grid-template-columns:52px 1fr 52px;gap:9px}.stepper button,.stepper output{height:52px;border:1px solid var(--line);border-radius:14px;background:#0a0d19;color:#fff;display:grid;place-items:center;font-size:21px;font-weight:900}.stepper button{cursor:pointer}.stepper button:hover{background:#8b5cf61f;border-color:#9c74ff}.stepper output{font-size:18px;background:#ffffff08}.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.quick button{border:1px solid var(--line);color:#bbc1d4;background:#ffffff07;padding:7px 11px;border-radius:999px;cursor:pointer}.quick button:hover{color:#fff;border-color:#8b5cf680}
+    .server-input{width:100%;border:1px solid var(--line);border-radius:13px;background:#090c18;color:#fff;padding:14px 15px;font:inherit}.server-input::placeholder{color:#60677e}.fine{font-size:11px;color:#737b94;line-height:1.5;margin-top:8px}
+    .summary{position:sticky;top:105px;background:radial-gradient(circle at 90% 5%,#8b5cf62a,transparent 35%),linear-gradient(145deg,#101329,#090c18)}.summary-top{display:flex;justify-content:space-between;gap:16px;align-items:start;border-bottom:1px solid var(--line);padding-bottom:20px}.tag{font-size:11px;font-weight:900;color:#a7f3d0;border:1px solid #34d39942;background:#34d39912;padding:7px 9px;border-radius:999px}.summary-row{display:flex;justify-content:space-between;gap:25px;color:var(--muted);padding:17px 0;border-bottom:1px solid #ffffff10}.summary-row strong{color:#fff;text-align:right}.total{display:flex;justify-content:space-between;align-items:end;padding:24px 0}.total span{color:var(--muted);font-weight:700}.total strong{font-size:42px;letter-spacing:-.05em}.full{width:100%;font-size:16px;padding:15px}.safe{margin-top:15px;border:1px solid #22d3ee29;border-radius:14px;background:#22d3ee0a;padding:13px;color:#aeb7ce;font-size:12px;line-height:1.55}.safe b{color:#a5f3fc}.notice{display:none;margin-top:12px;padding:12px;border:1px solid #34d39948;background:#34d39910;color:#bbf7d0;border-radius:12px;font-size:13px}.notice.show{display:block}
+    footer{border-top:1px solid var(--line);color:#777f97;padding:30px 0 0;margin-top:65px;display:flex;justify-content:space-between;font-size:13px}
+    @media(max-width:800px){nav .links{display:none}.layout{grid-template-columns:1fr}.summary{position:static}main{padding-top:125px}.panel{padding:21px}}
+    @media(max-width:470px){.choices{grid-template-columns:1fr}h1{font-size:48px}.total strong{font-size:36px}footer{gap:14px;flex-direction:column}.btn{padding:12px 14px}}
+  </style>
+</head>
+<body>
+  <div class="grid"></div><div class="orb"></div>
+  <nav>
+    <a class="brand" href="/"><span class="logo">A</span>ATLAST</a>
+    <div class="links"><a href="/">Home</a><a href="/build/">Custom Bots</a><a href="https://discord.gg/p5cD6JS8B" target="_blank" rel="noopener">Support</a></div>
+    <a class="btn secondary" href="/">Back Home</a>
+  </nav>
+  <main>
+    <div class="eyebrow"><span class="dot"></span> ATLAST Server Boosts</div>
+    <h1>Give your server<br><span class="grad">the lift it deserves.</span></h1>
+    <p class="lead">Choose your duration and boost count. Your total updates instantly, then you can continue to the ATLAST Discord to arrange fulfillment.</p>
+
+    <div class="layout">
+      <section class="panel" aria-labelledby="customizeTitle">
+        <h2 id="customizeTitle">Customize your order</h2>
+        <p class="hint">Every bundle contains two boosts. Choose any even amount from 2 to 30.</p>
+
+        <span class="label">1. Duration</span>
+        <div class="choices" role="radiogroup" aria-label="Boost duration">
+          <button class="choice active" type="button" data-months="1" role="radio" aria-checked="true"><span class="check">✓</span><strong>1 Month</strong><span>$0.95 per 2 boosts</span></button>
+          <button class="choice" type="button" data-months="3" role="radio" aria-checked="false"><span class="check">✓</span><strong>3 Months</strong><span>$2.20 per 2 boosts</span></button>
+        </div>
+
+        <span class="label">2. Number of boosts</span>
+        <div class="stepper">
+          <button id="minus" type="button" aria-label="Remove two boosts">−</button>
+          <output id="boostOutput" aria-live="polite">2 boosts</output>
+          <button id="plus" type="button" aria-label="Add two boosts">+</button>
+        </div>
+        <div class="quick" aria-label="Quick boost amounts">
+          <button type="button" data-boosts="2">2</button><button type="button" data-boosts="4">4</button><button type="button" data-boosts="6">6</button><button type="button" data-boosts="8">8</button><button type="button" data-boosts="10">10</button><button type="button" data-boosts="14">14</button>
+        </div>
+
+        <label class="label" for="server">3. Server name or invite (optional)</label>
+        <input class="server-input" id="server" maxlength="180" placeholder="Your server name or Discord invite">
+        <div class="fine">Only share a normal server invite. Never send an account token, password, backup code, or login session.</div>
+      </section>
+
+      <aside class="panel summary" aria-labelledby="summaryTitle">
+        <div class="summary-top"><div><div class="eyebrow">Order summary</div><h2 id="summaryTitle" style="margin-top:7px">Your boost package</h2></div><span class="tag">LIVE TOTAL</span></div>
+        <div class="summary-row"><span>Duration</span><strong id="durationSummary">1 Month</strong></div>
+        <div class="summary-row"><span>Boosts</span><strong id="boostSummary">2 Boosts</strong></div>
+        <div class="summary-row"><span>Bundles</span><strong id="bundleSummary">1 × 2 boosts</strong></div>
+        <div class="total"><span>Total</span><strong id="total">$0.95</strong></div>
+        <button class="btn full" id="continue" type="button">Continue in Discord →</button>
+        <div class="notice" id="notice" role="status">Order details copied. Paste them in the ATLAST Discord after it opens.</div>
+        <div class="safe"><b>Fulfilled through Discord’s normal boost system.</b> ATLAST will never ask you for a Discord password or user-account token.</div>
+      </aside>
+    </div>
+    <footer><span><b>ATLAST</b> • Custom Discord Bots</span><span>© 2026 ATLAST</span></footer>
+  </main>
+  <script>
+    const prices={1:0.95,3:2.20};let months=1,boosts=2;
+    const output=document.getElementById('boostOutput'),durationSummary=document.getElementById('durationSummary'),boostSummary=document.getElementById('boostSummary'),bundleSummary=document.getElementById('bundleSummary'),total=document.getElementById('total'),notice=document.getElementById('notice');
+    function render(){const bundles=boosts/2,price=prices[months]*bundles;output.textContent=`${boosts} boosts`;durationSummary.textContent=`${months} Month${months===1?'':'s'}`;boostSummary.textContent=`${boosts} Boosts`;bundleSummary.textContent=`${bundles} × 2 boosts`;total.textContent=`$${price.toFixed(2)}`;}
+    document.querySelectorAll('[data-months]').forEach(button=>button.addEventListener('click',()=>{months=Number(button.dataset.months);document.querySelectorAll('[data-months]').forEach(item=>{const selected=item===button;item.classList.toggle('active',selected);item.setAttribute('aria-checked',String(selected));});render();}));
+    document.getElementById('minus').addEventListener('click',()=>{boosts=Math.max(2,boosts-2);render();});document.getElementById('plus').addEventListener('click',()=>{boosts=Math.min(30,boosts+2);render();});
+    document.querySelectorAll('[data-boosts]').forEach(button=>button.addEventListener('click',()=>{boosts=Number(button.dataset.boosts);render();}));
+    document.getElementById('continue').addEventListener('click',async()=>{const server=document.getElementById('server').value.trim()||'Not provided';const amount=(prices[months]*(boosts/2)).toFixed(2);const order=`ATLAST Boost Order\nDuration: ${months} month${months===1?'':'s'}\nBoosts: ${boosts}\nTotal: $${amount}\nServer: ${server}`;try{await navigator.clipboard.writeText(order);notice.classList.add('show');}catch(error){notice.textContent='Discord is opening. Copy your choices from the order summary.';notice.classList.add('show');}setTimeout(()=>window.open('https://discord.gg/p5cD6JS8B','_blank','noopener'),250);});
+    render();
+  </script>
+</body>
+</html>
